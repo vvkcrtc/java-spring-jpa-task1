@@ -13,12 +13,12 @@ import java.util.List;
 
 @RestController
 public class PersonController {
-    //@Autowired
+
     private PersonService personService;
 
-//    public PersonController(PersonService personService) {
-//        this.personService = personService;
-//    }
+    public PersonController(PersonService personService) {
+        this.personService = personService;
+    }
 
     @GetMapping("/persons/by-city")
     public List<Person> getPersonsByCity(@RequestParam("city") @Validated String city)

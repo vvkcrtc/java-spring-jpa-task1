@@ -9,12 +9,12 @@ import java.util.List;
 
 @Service
 public class PersonServiceImpl implements PersonService {
-    //@Autowired
+
     private PersonRepository personRepository;
 
-//    public PersonServiceImpl(PersonRepository personRepository) {
-//        this.personRepository = personRepository;
-//    }
+    public PersonServiceImpl(PersonRepository personRepository) {
+        this.personRepository = personRepository;
+    }
 
     @Override
     public List<Person> getPersonsByCity(String city) {
