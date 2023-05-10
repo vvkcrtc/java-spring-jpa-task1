@@ -11,11 +11,14 @@ import java.util.Objects;
 @Embeddable
 @NoArgsConstructor
 public class NameId implements Serializable {
-    @Column(nullable = false)
-    private String name;
-    private String surname;
-    @Column(nullable = false)
+    @Column(name="age",nullable = false)
     private int age;
+    @Column(name = "name",nullable = false)
+    private String name;
+    @Column(name = "surname")
+    private String surname;
+
+
 
 //    public NameId() {
 //

@@ -1,16 +1,9 @@
 package ru.netology.springjpatask1.repository;
-
-//import javax.persistence.*;
-
-import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.NamedQuery;
-import org.springframework.data.annotation.Id;
 
 
 
