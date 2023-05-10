@@ -1,8 +1,10 @@
 package ru.netology.springjpatask1.repository;
 
-import javax.persistence.*;
+//import javax.persistence.*;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,6 +17,7 @@ import org.springframework.data.annotation.Id;
 //@Table(name="persons")
 @Entity
 @Data
+@NoArgsConstructor
 @Builder
 public class Person {
 
@@ -26,9 +29,9 @@ public class Person {
     private String city_of_living;
 
 
-    public Person() {
-
-    }
+//    public Person() {
+//
+//    }
 
     public Person(NameId id, String phone_number, String city_of_living) {
         this.id = id;
