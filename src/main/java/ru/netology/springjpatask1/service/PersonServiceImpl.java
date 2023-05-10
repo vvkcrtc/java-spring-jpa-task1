@@ -1,6 +1,6 @@
 package ru.netology.springjpatask1.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 import ru.netology.springjpatask1.repository.NameId;
 import ru.netology.springjpatask1.repository.Person;
@@ -12,36 +12,53 @@ import java.util.List;
 @Service
 public class PersonServiceImpl implements PersonService {
 
-    private PersonRepository personRepository;
+    private final PersonRepository personRepository;
 
     public PersonServiceImpl(PersonRepository personRepository) {
 
         this.personRepository = personRepository;
         List<Person> persons = new ArrayList<>();
-        persons.add(new Person(new NameId("name1","surname1",22),"1111111","Moscow"));
-        persons.add(new Person(new NameId("name2","surname2",22),"2222222","Moscow"));
-        persons.add(new Person(new NameId("name3","surname3",22),"3333333","Moscow"));
+        persons.add(new Person(new NameId("name1", "surname1", 22), "1111111", "Moscow"));
+        persons.add(new Person(new NameId("name2", "surname2", 24), "2222222", "Moscow"));
+        persons.add(new Person(new NameId("name3", "surname3", 32), "3333333", "Moscow"));
+        persons.add(new Person(new NameId("name4", "surname4", 34), "2223344", "Orel"));
+        persons.add(new Person(new NameId("name5", "surname5", 35), "5553333", "Kursk"));
+        persons.add(new Person(new NameId("name6", "surname6", 37), "3333333", "Tula"));
         personRepository.saveAll(persons);
 
 
     }
 
-    @Override
-    public List<Person> getPersonsByCity(String city) {
-        return (List<Person>)
-                personRepository.findAll();
-    };
-    @Override
-    public List<Person> getPersonsByAge(int age) {
-        return (List<Person>)
-                personRepository.findAll();
-    };
+    protected List<Person> getAll() {
+        return personRepository.findAll();
+    }
 
     @Override
-    public List<Person> getPersonsByFullName(String name, String surname) {
-        return (List<Person>)
-                personRepository.findAll();
-    };
+    public List<Person> getPersonsByCity(String city) {
+        return personRepository.findByCity(city);
+    }
+
+    @Override
+    public List<Person> getPersonsByAge(int age) {
+        List<Person> result = new ArrayList<>();
+        for (Person p : getAll()) {
+            if (p.getAge() < age) {
+                result.add(p);
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public Person getPersonsByFullName(String name, String surname) {
+        Person result = null;
+        for (Person p : getAll()) {
+            if (p.getName().equals(name) && p.getSurname().equals(surname)) {
+                result = p;
+            }
+        }
+        return result;
+    }
 
 
 }

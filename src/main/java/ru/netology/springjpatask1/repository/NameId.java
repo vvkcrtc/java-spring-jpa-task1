@@ -2,7 +2,7 @@ package ru.netology.springjpatask1.repository;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import lombok.Builder;
+
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
@@ -11,18 +11,13 @@ import java.util.Objects;
 @Embeddable
 @NoArgsConstructor
 public class NameId implements Serializable {
-    @Column(name="age",nullable = false)
+    @Column(nullable = false)
     private int age;
-    @Column(name = "name",nullable = false)
+    @Column(nullable = false)
     private String name;
-    @Column(name = "surname")
+
     private String surname;
 
-
-
-//    public NameId() {
-//
-//    }
 
     public NameId(String name, String surname, int age) {
         this.name = name;

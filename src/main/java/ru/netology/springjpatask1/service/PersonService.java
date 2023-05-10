@@ -9,5 +9,5 @@ public interface PersonService {
 
     List<Person> getPersonsByAge(int age);
 
-    List<Person> getPersonsByFullName(String name, String surname);
+    Person getPersonsByFullName(String name, String surname);
 }
