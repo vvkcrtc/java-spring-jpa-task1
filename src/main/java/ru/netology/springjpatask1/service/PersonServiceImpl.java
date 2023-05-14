@@ -18,20 +18,16 @@ public class PersonServiceImpl implements PersonService {
 
         this.personRepository = personRepository;
         List<Person> persons = new ArrayList<>();
-        persons.add(new Person(new NameId("name1", "surname1", 22), "1111111", "Moscow"));
+        persons.add(new Person(new NameId("name1", "surname1", 27), "1111111", "Moscow"));
         persons.add(new Person(new NameId("name2", "surname2", 24), "2222222", "Moscow"));
-        persons.add(new Person(new NameId("name3", "surname3", 32), "3333333", "Moscow"));
-        persons.add(new Person(new NameId("name4", "surname4", 34), "2223344", "Orel"));
+        persons.add(new Person(new NameId("name3", "surname3", 34), "3333333", "Moscow"));
+        persons.add(new Person(new NameId("name4", "surname4", 37), "2223344", "Orel"));
         persons.add(new Person(new NameId("name5", "surname5", 35), "5553333", "Kursk"));
-        persons.add(new Person(new NameId("name6", "surname6", 37), "3333333", "Tula"));
+        persons.add(new Person(new NameId("name6", "surname6", 32), "3333333", "Tula"));
         personRepository.saveAll(persons);
 
-
     }
 
-    protected List<Person> getAll() {
-        return personRepository.findAll();
-    }
 
     @Override
     public List<Person> getPersonsByCity(String city) {
@@ -40,24 +36,12 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public List<Person> getPersonsByAge(int age) {
-        List<Person> result = new ArrayList<>();
-        for (Person p : getAll()) {
-            if (p.getAge() < age) {
-                result.add(p);
-            }
-        }
-        return result;
+        return personRepository.findPersonByAgeBefore(age);
     }
 
     @Override
     public Person getPersonsByFullName(String name, String surname) {
-        Person result = null;
-        for (Person p : getAll()) {
-            if (p.getName().equals(name) && p.getSurname().equals(surname)) {
-                result = p;
-            }
-        }
-        return result;
+        return personRepository.findPersonByNameAndSurname(name, surname);
     }
 
 
