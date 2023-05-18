@@ -33,4 +33,9 @@ public class PersonController {
     public Person getPersonsByAge(@RequestParam("name") @Validated String name, @RequestParam("surname") @Validated String surname) {
         return personService.getPersonsByFullName(name, surname);
     }
+    @GetMapping("/all")
+    public String getForAll() {
+        return "For all users ...";
+    }
+
 }
